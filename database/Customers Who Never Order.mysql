@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+SELECT CName as Customers FROM (SELECT Customers.Id as CId, Customers.Name as CName, Orders.Id as OId, Orders.CustomerId as OCId FROM Customers LEFT JOIN Orders on Customers.Id=Orders.CustomerId) as a WHERE OId IS NULL;
