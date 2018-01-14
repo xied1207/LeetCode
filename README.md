@@ -1,2 +1,2 @@
 # LeetCode
-Python practice
+Python&SQL practice
