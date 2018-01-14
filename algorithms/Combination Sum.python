@@ -1,0 +1,27 @@
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        ansgroup=[]
+        candidates.sort()
+        self.findnum(target,candidates,ansgroup,[])
+        ans=[]
+        for item in ansgroup:
+            item.sort()
+            if item not in ans:
+                ans.append(item)
+        return ans
+        
+    def findnum(self,target,candidates,ansgroup,nowans):
+        for num in candidates:
+            newans=nowans[:]
+            newans.append(num)
+            if sum(newans)==target:
+                ansgroup.append(newans)
+            elif sum(newans)<target:
+                self.findnum(target,candidates,ansgroup,newans)
+            else:
+                break

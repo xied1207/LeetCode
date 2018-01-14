@@ -1,0 +1,18 @@
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        istr=str(x)
+        newstr=''
+        lenth=len(istr)
+        start=lenth-1
+        ifpal=False
+        if x>=0:
+            while start>-1:
+                newstr+=istr[start]
+                start-=1
+            if newstr==istr:
+                ifpal=True
+        return ifpal

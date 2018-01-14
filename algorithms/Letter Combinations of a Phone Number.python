@@ -1,0 +1,23 @@
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        dict={"2":"abc","3":"def","4":"ghi","5":"jkl","6":"mno","7":"pqrs","8":"tuv","9":"wxyz"}
+        ans=[]
+        for i in range(0,len(digits)):
+            if i==0:
+                for char in dict.get(digits[i]):
+                    ans.append(char)
+            else:
+                toDel=len(ans)
+                oldanslist=ans
+                ans=[]
+                for oldans in oldanslist:
+                    for char in dict.get(digits[i]):
+                        toadd=oldans+char
+                        ans.append(toadd)
+        return ans
+            
+                

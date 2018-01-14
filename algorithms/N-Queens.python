@@ -1,0 +1,60 @@
+class Solution(object):
+    def solveNQueens(self, n):
+        """
+        :type n: int
+        :rtype: List[List[str]]
+        """
+        board=[]
+        ans=[]
+        for i in range(0,n):
+            line=[]
+            for l in range(0,n):
+                line.append(-1)
+            board.append(line)
+        toput=n
+        self.putQueens(board,toput,ans)
+        return ans
+    
+    def putQueens(self,board,toput,ans):
+        for l in range(0,len(board)):
+            if board[len(board)-toput][l]==-1:
+                newboard=[]
+                for line in board:
+                    newboard.append(line[:])
+                if self.upDate(newboard,len(board)-toput,l):
+                    newtoput=toput-1
+                    if newtoput>0:
+                        self.putQueens(newboard,newtoput,ans)
+                    else:
+                        ans.append([])
+                        for line in board:
+                            toadd=''
+                            for item in line:
+                                if item==0:
+                                    toadd+='.'
+                                else:
+                                    toadd+='Q'
+                            ans[-1].append(toadd)
+
+    def upDate(self,board,row,col):
+        for i in range(0,len(board)):
+            for l in range(0,len(board)):
+                if i==row:
+                    if board[i][l]!=1:
+                        board[i][l]=0
+                    else:
+                        return False
+                elif l==col:
+                    if board[i][l]!=1:
+                        board[i][l]=0
+                    else:
+                        return False
+                elif abs(i-row)==abs(l-col):
+                    if board[i][l]!=1:
+                        board[i][l]=0
+                    else:
+                        return False
+        board[row][col]=1
+        return True
+        
+        

@@ -1,0 +1,20 @@
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+        temp=[]
+        folders = path.split("/") 
+        ans=''
+        for item in folders:
+            if item!='.' and item!='..' and item!='':
+                temp.append(item)
+            elif item=='..':
+                if len(temp)>0:
+                    del temp[-1]
+        for toput in temp:
+            ans=ans+'/'+toput
+        if ans=='':
+            ans='/'
+        return ans

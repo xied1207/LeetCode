@@ -1,0 +1,20 @@
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        temp1=[]
+        temp2=[]
+        for m in range(len(matrix)):
+            for n in range(len(matrix[0])):
+                if matrix[m][n]==0:
+                    temp1.append(m)
+                    temp2.append(n)
+        for num in temp1:
+            matrix[num]=[0]*len(matrix[0])
+        for num in temp2:
+            for item in matrix:
+                if num<len(item):
+                    item[num]=0
+            

@@ -1,0 +1,33 @@
+# Definition for an interval.
+# class Interval(object):
+#     def __init__(self, s=0, e=0):
+#         self.start = s
+#         self.end = e
+
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[Interval]
+        :rtype: List[Interval]
+        """
+        intervals.sort(key = lambda x: x.start)
+        cob1=0
+        cob2=1
+        if len(intervals)>1:
+            while cob2<len(intervals):
+                if intervals[cob1].end>=intervals[cob2].start and intervals[cob1].start<=intervals[cob2].start and intervals[cob1].end<intervals[cob2].end:
+                    intervals[cob2].start=intervals[cob1].start
+                    intervals[cob1]=None
+                elif intervals[cob1].start<=intervals[cob2].start and intervals[cob1].end>=intervals[cob2].end:
+                    intervals[cob2].start=intervals[cob1].start
+                    intervals[cob2].end=intervals[cob1].end
+                    intervals[cob1]=None
+                cob1+=1
+                cob2+=1
+            ans=[]
+            for item in intervals:
+                if item!=None:
+                    ans.append(item)
+            return ans
+        else:
+            return intervals

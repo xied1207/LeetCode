@@ -1,0 +1,33 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        m=len(matrix)
+        if m>0:
+            n=len(matrix[0])
+            if m>1:
+                if target>=matrix[0][0] and target<=matrix[-1][-1]:
+                    if target<matrix[m/2][0]:
+                        return self.searchMatrix(matrix[:m/2],target)
+                    elif target>matrix[m/2][-1]:
+                        return self.searchMatrix(matrix[m/2+1:],target)
+                    else:
+                        return self.searchMatrix(matrix[m/2:m/2+1],target)
+                else:
+                    return False
+            else:
+                ans=False
+                tocheck=matrix[0]
+                while len(tocheck)>0:
+                    if target<tocheck[len(tocheck)/2]:
+                        tocheck=tocheck[:len(tocheck)/2]
+                    elif target>tocheck[len(tocheck)/2]:
+                        tocheck=tocheck[len(tocheck)/2+1:]
+                    else:
+                        return True
+                return False
+        else:
+            return False

@@ -1,0 +1,60 @@
+class Solution(object):
+    def generateMatrix(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        matrix = [[0 for x in range(n)] for y in range(n)]
+        row=0
+        col=0
+        toput=1
+        dir=1
+        if len(matrix)>1:
+            while matrix[row][col]==0:
+                matrix[row][col]=toput
+                toput+=1
+                if dir==1:
+                    if col+1<n:
+                        if matrix[row][col+1]==0:
+                            col=col+1
+                        else:
+                            dir=2
+                            row=row+1
+                    else:
+                        dir=2
+                        row=row+1
+                elif dir==2:
+                    if row+1<n:
+                        if matrix[row+1][col]==0:
+                            row=row+1
+                        else:
+                            dir=3
+                            col=col-1
+                    else:
+                        dir=3
+                        col=col-1
+                elif dir==3:
+                    if col-1>-1:
+                        if matrix[row][col-1]==0:
+                            col=col-1
+                        else:
+                            dir=4
+                            row=row-1
+                    else:
+                        dir=4
+                        row=row-1
+                else:
+                    if row-1>-1:
+                        if matrix[row-1][col]==0:
+                            row=row-1
+                        else:
+                            dir=1
+                            col=col+1
+                    else:
+                        dir=1
+                        col=col+1
+            return matrix
+        elif len(matrix)==1:
+            return [[1]]
+        else:
+            return []

@@ -1,0 +1,37 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        board2=["","","","","","","","",""]
+        group=["","",""]
+        for i in range(0,9):
+            for n in range(0,9):
+                if board[i][n] in board[i][n+1:] and board[i][n].isdigit():
+                    return False
+                if board[i][n] in board2[n] and board[i][n].isdigit():
+                    return False
+                else:
+                    board2[n]+=board[i][n]
+                if n>=0 and n<=2:
+                    if board[i][n] in group[0] and board[i][n].isdigit():
+                        return False
+                    else:
+                        group[0]+=board[i][n]
+                elif n>=3 and n<=5:
+                    if board[i][n] in group[1] and board[i][n].isdigit():
+                        return False
+                    else:
+                        group[1]+=board[i][n]
+                else:
+                    if board[i][n] in group[2] and board[i][n].isdigit():
+                        return False
+                    else:
+                        group[2]+=board[i][n]
+            if i==2 or i==5 or i==8:
+                group=["","",""]
+        return True
+                    
+                
+                

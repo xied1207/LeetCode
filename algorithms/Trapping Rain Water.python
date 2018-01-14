@@ -1,0 +1,28 @@
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        leftval=[]
+        rightval=[]
+        ans=0
+        toadd=0
+        for item in height:
+            leftval.append(toadd)
+            if item>toadd:
+                toadd=item
+        toadd=0
+        height.reverse()
+        for item in height:
+            rightval.append(toadd)
+            if item>toadd:
+                toadd=item
+        rightval.reverse()
+        height.reverse()
+        for i in range(0,len(height)):
+            if min(leftval[i],rightval[i])-height[i]>0:
+                ans=ans+min(leftval[i],rightval[i])-height[i]
+        return ans
+                    
+                    

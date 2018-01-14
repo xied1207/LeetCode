@@ -1,0 +1,78 @@
+class Solution(object):
+    def longestValidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        start=0
+        end=len(s)
+        for i in range(0,len(s)):
+            if s[i]==")":
+                start+=1
+            else:
+                break
+        for i in range(len(s)-1,-1):
+            if s[i]=="(":
+                end-=1
+            else:
+                break
+        s=s[start:end]
+        righthalf=[]
+        temp=[]
+        toadd=0
+        for i in range(0,len(s)):
+            if s[i]=="(":
+                righthalf.append(i)
+            else:
+                if len(righthalf)>0:
+                    righthalf=righthalf[:-1]
+                    toadd+=2
+                else:
+                    temp.append(toadd)
+                    toadd=0
+        if len(righthalf)==0:
+            temp.append(toadd)
+        else:
+            news=s[righthalf[0]:]
+            news=news[::-1]
+            print(news)
+            todel=[]
+            todelele=0
+            lefthalf=0
+            for char in news:
+                print(char)
+                if char==")":
+                    lefthalf+=1
+                else:
+                    if lefthalf>0:
+                        lefthalf-=1
+                        todelele+=2
+                    else:
+                        print("todelele:",todelele)
+                        todel.append(todelele)
+                        temp.append(todelele)
+                        todelele=0
+            toadd-=sum(todel)
+            temp.append(toadd)
+        return max(temp)
+            
+            
+        '''
+        lefthalf=0
+        temp1=[]
+        toadd=0
+        s=s[::-1]
+        for char in s:
+            print(char)
+            if char==")":
+                lefthalf+=1
+            else:
+                if lefthalf>0:
+                    lefthalf-=1
+                    toadd+=2
+                else:
+                    temp1.append(toadd)
+                    toadd=0
+            print(toadd)
+        temp1.append(toadd)
+        '''

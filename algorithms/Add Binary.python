@@ -1,0 +1,56 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        if len(a)>0 and len(b)>0:
+            a=a[::-1]
+            b=b[::-1]
+            addone=False
+            ans=""
+            for i in range(0,max(len(a),len(b))):
+                if i<len(a) and i<len(b):
+                    if a[i]=="1" and b[i]=="1":
+                        if addone==True:
+                            ans=ans+"1"
+                        else:
+                            ans=ans+"0"
+                        addone=True
+                    elif (bool(a[i]=="1")!=bool(b[i]=="1")) and addone==True:
+                        ans=ans+"0"
+                    elif (bool(a[i]=="1")!=bool(b[i]=="1")) and addone==False:
+                        ans=ans+"1"
+                    elif (a[i]=="0" and b[i]=="0") and addone==True:
+                        ans=ans+"1"
+                        addone=False
+                    else:
+                        ans=ans+"0"
+                if i<len(a) and i>=len(b):
+                    if a[i]=="0" and addone==True:
+                        ans=ans+"1"
+                        addone=False
+                    elif a[i]=="0" and addone==False:
+                        ans=ans+"0"
+                    elif a[i]=="1" and addone==True:
+                        ans=ans+"0"
+                    else:
+                        ans=ans+"1"
+                if i<len(b) and i>=len(a):
+                    if b[i]=="0" and addone==True:
+                        ans=ans+"1"
+                        addone=False
+                    elif b[i]=="0" and addone==False:
+                        ans=ans+"0"
+                    elif b[i]=="1" and addone==True:
+                        ans=ans+"0"
+                    else:
+                        ans=ans+"1"
+            if addone==True:
+                ans=ans+"1"
+            ans=ans[::-1]
+            return ans                       
+        else:
+            return max(a,b)
+            

@@ -1,0 +1,32 @@
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        ans=[]
+        ref=[]
+        for i in range(1,numRows+1):
+            if i==1:
+                ans.append([1])
+            elif i==2:
+                ans.append([1,1])
+                ref=[1,1]
+            else:
+                toadd=[]
+                firsthf=[1]
+                toloop=i/2
+                print(toloop)
+                for n in range(1,toloop+1):
+                    firsthf.append(ref[n-1]+ref[n])
+                print(firsthf)
+                secondhf=firsthf[:]
+                secondhf.reverse()
+                secondhf=secondhf[1:]
+                if i%2==0:
+                    firsthf=firsthf[:len(firsthf)-1]
+                toadd[:]=firsthf+secondhf
+                ans.append(toadd)
+                ref=toadd
+        return ans
+                    

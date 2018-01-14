@@ -1,0 +1,26 @@
+class Solution(object):
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        num=1
+        read=""
+        for i in range(2,n+1):
+            toadd=""
+            count=0
+            strnum=""
+            for char in str(num):
+                if char!=toadd:
+                    if count!=0:
+                        strnum=strnum+str(count)+toadd
+                    toadd=char
+                    count=1
+                else:
+                    count+=1
+            strnum=strnum+str(count)+toadd
+            num=int(strnum)
+        return str(num)
+            
+                
+            

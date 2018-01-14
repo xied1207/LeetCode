@@ -1,0 +1,24 @@
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        global str
+        istr=str(x)
+        newstr=''
+        ifneg=False
+        lenth=len(istr)
+        start=lenth-1
+        while start>-1:
+            newstr+=istr[start]
+            start-=1
+        if newstr[len(newstr)-1]=='-':
+            newstr=newstr[0:lenth-1]
+            ifneg=True
+        newint=int(newstr)
+        if ifneg==True:
+            newint=-newint
+        if newint>2**31 or newint<-2**31:
+            newint=0
+        return newint

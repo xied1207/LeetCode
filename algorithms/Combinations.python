@@ -1,0 +1,25 @@
+from itertools import combinations
+class Solution(object):
+    def combine(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        '''
+        nums=list(range(1,n+1))
+        ansgroup=[]
+        nums.sort()
+        self.addOne(k,nums,ansgroup,[])
+        return ansgroup
+        
+    def addOne(self,n,nums,ansgroup,nowans):
+        for i in range(0,len(nums)):
+            newans=nowans[:]
+            newans.append(nums[i])
+            if len(newans)==n:
+                ansgroup.append(newans)
+            else:
+                self.addOne(n,nums[i+1:],ansgroup,newans)
+        '''
+        return list(combinations(range(1, n+1), k))

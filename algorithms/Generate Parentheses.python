@@ -1,0 +1,23 @@
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        if not n:
+            return []
+        left=n
+        right=n
+        ans=[]
+        self.dfs(left,right,ans,"")
+        return ans
+    def dfs(self,left,right,ans,string):
+        if right==0 and left==0:
+            ans.append(string)
+            return
+        if right<left:
+            return
+        if left:
+            self.dfs(left-1,right,ans,string+"(")
+        if right:
+            self.dfs(left,right-1,ans,string+")")

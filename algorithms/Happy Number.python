@@ -1,0 +1,18 @@
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        s=str(n)
+        tempset=set()
+        while s!="1":
+            temp=0
+            for i in s:
+                temp=temp+(int(i)**2)
+            s=str(temp)
+            if s in tempset:
+                return False
+            else:
+                tempset.add(s)
+        return True
